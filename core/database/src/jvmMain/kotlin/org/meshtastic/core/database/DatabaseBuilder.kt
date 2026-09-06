@@ -32,14 +32,16 @@ import java.io.File
 
 /**
  * Resolves the desktop data directory for persistent storage (DataStore files, Room database). Defaults to
- * `~/.meshtastic/`. Override via `MESHTASTIC_DATA_DIR` environment variable.
+ * `~/.meshtastic/`. Override via `MESHTASTIC_DATA_DIR`, or set the `meshtastic.data.directory.name` JVM property to
+ * give a branded desktop host an isolated default.
  *
  * Shared between `core:database` and `desktop` module to ensure all persistent data is co-located.
  */
 fun desktopDataDir(): String {
     val override = System.getenv("MESHTASTIC_DATA_DIR")
     if (!override.isNullOrBlank()) return override
-    return System.getProperty("user.home") + "/.meshtastic"
+    val directoryName = System.getProperty("meshtastic.data.directory.name", ".meshtastic")
+    return System.getProperty("user.home") + "/" + directoryName
 }
 
 /** Returns a [RoomDatabase.Builder] configured for JVM/Desktop with the given [dbName]. */

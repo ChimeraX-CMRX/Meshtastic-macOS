@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "MeshMac: run",
+      "type": "shell",
+      "command": "./gradlew :desktopApp:run",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "MeshMac: test",
+      "type": "shell",
+      "command": "./gradlew :desktopApp:test",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "MeshMac: package DMG",
+      "type": "shell",
+      "command": "./gradlew :desktopApp:packageDistributionForCurrentOS",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

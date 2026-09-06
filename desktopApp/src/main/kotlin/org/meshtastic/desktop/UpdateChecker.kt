@@ -55,8 +55,8 @@ class UpdateChecker(private val httpClient: HttpClient) {
 
     companion object {
         private const val LATEST_RELEASE_URL =
-            "https://api.github.com/repos/meshtastic/Meshtastic-Android/releases/latest"
-        private const val RELEASES_PAGE_URL = "https://github.com/meshtastic/Meshtastic-Android/releases"
+            "https://api.github.com/repos/ChimeraX-CMRX/Meshtastic-macOS/releases/latest"
+        private const val RELEASES_PAGE_URL = "https://github.com/ChimeraX-CMRX/Meshtastic-macOS/releases"
 
         private val VERSION_REGEX = Regex("""(\d+)\.(\d+)\.(\d+)""")
 

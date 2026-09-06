@@ -46,6 +46,8 @@ configureGraphTasks()
 // ── Version resolution (shared with app/build.gradle.kts via build-logic) ────
 val versionInfo = resolveVersionInfo()
 val resolvedIsDebug: Boolean = providers.gradleProperty("desktop.release").map { !it.toBoolean() }.getOrElse(true)
+val desktopApplicationName = "MeshMac"
+val desktopBundleId = "io.github.chimeraxcmrx.meshmac"
 
 // ── Generate DesktopBuildConfig ──────────────────────────────────────────────
 // Mirrors AGP's BuildConfig for Android so the desktop runtime has access to the
@@ -82,7 +84,7 @@ val generateBuildConfig =
             |    const val VERSION_CODE: Int = ${versionInfo.versionCode}
             |    const val VERSION_NAME: String = "${versionInfo.versionName}"
             |    const val IS_DEBUG: Boolean = $resolvedIsDebug
-            |    const val APPLICATION_ID: String = "org.meshtastic.MeshtasticDesktop"
+            |    const val APPLICATION_ID: String = "$desktopBundleId"
             |    const val MIN_FW_VERSION: String = "${versionInfo.minFwVersion}"
             |    const val ABS_MIN_FW_VERSION: String = "${versionInfo.absMinFwVersion}"
             |}
@@ -150,9 +152,10 @@ compose.desktop {
                 "--enable-native-access=ALL-UNNAMED",
                 // Let the macOS title bar follow the system light/dark theme (ignored on other OSes).
                 "-Dapple.awt.application.appearance=system",
-                "-Dapple.awt.application.name=Meshtastic Desktop",
-                "-Dcom.apple.mrj.application.apple.menu.about.name=Meshtastic Desktop",
-                "-Dcom.apple.bundle.identifier=org.meshtastic.MeshtasticDesktop",
+                "-Dapple.awt.application.name=$desktopApplicationName",
+                "-Dcom.apple.mrj.application.apple.menu.about.name=$desktopApplicationName",
+                "-Dcom.apple.bundle.identifier=$desktopBundleId",
+                "-Dmeshtastic.data.directory.name=.meshmac",
             )
         jvmArgs(*desktopJvmArgs.toTypedArray())
 
@@ -170,7 +173,7 @@ compose.desktop {
         }
 
         nativeDistributions {
-            packageName = "Meshtastic Desktop"
+            packageName = desktopApplicationName
 
             // Ensure critical JVM modules are included in the custom JRE bundled with the app.
             // jdeps might miss some of these if they are loaded via reflection or JNI.
@@ -191,26 +194,26 @@ compose.desktop {
             macOS {
                 iconFile.set(project.file("src/main/resources/icon.icns"))
                 minimumSystemVersion = "12.0"
-                bundleID = "org.meshtastic.MeshtasticDesktop"
+                bundleID = desktopBundleId
                 appCategory = "public.app-category.utilities"
                 entitlementsFile.set(project.file("entitlements.plist"))
                 infoPlist {
                     extraKeysRawXml =
                         """
                         <key>NSBluetoothAlwaysUsageDescription</key>
-                        <string>Meshtastic uses Bluetooth to communicate with your Meshtastic radio device.</string>
+                        <string>MeshMac uses Bluetooth to communicate with your Meshtastic radio device.</string>
                         <key>NSLocalNetworkUsageDescription</key>
-                        <string>Meshtastic uses your local network to discover Meshtastic devices connected via WiFi.</string>
+                        <string>MeshMac uses your local network to discover Meshtastic devices connected via WiFi.</string>
                         <key>NSUserNotificationAlertStyle</key>
                         <string>alert</string>
                         <key>CFBundleURLTypes</key>
                         <array>
                           <dict>
                             <key>CFBundleURLName</key>
-                            <string>Meshtastic deep link</string>
+                            <string>MeshMac deep link</string>
                             <key>CFBundleURLSchemes</key>
                             <array>
-                              <string>meshtastic</string>
+                              <string>meshmac</string>
                             </array>
                           </dict>
                         </array>
@@ -268,8 +271,8 @@ compose.desktop {
             val sanitizedVersion = Regex("^\\d+\\.\\d+\\.\\d+").find(versionInfo.versionName)?.value ?: "1.0.0"
             packageVersion = sanitizedVersion
 
-            description = "Meshtastic Desktop Application"
-            vendor = "Meshtastic LLC"
+            description = "Independent macOS client for Meshtastic radios"
+            vendor = "ChimeraX-CMRX"
         }
     }
 }
