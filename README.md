@@ -1,7 +1,36 @@
 <p align="center">
   <img src=".github/meshtastic_logo.png" alt="Meshtastic Logo" width="200"/>
 </p>
-<h1 align="center">Meshtastic-Android</h1>
+<h1 align="center">MeshMac — Meshtastic for macOS</h1>
+
+> [!IMPORTANT]
+> **MeshMac is an independent, third-party macOS application.** It is not the
+> official Meshtastic Apple app and is not maintained or endorsed by the
+> Meshtastic project.
+
+This fork turns the existing Compose Multiplatform/Desktop application in
+[`meshtastic/Meshtastic-Android`](https://github.com/meshtastic/Meshtastic-Android)
+into an independently named macOS app. It is a native macOS `.app` packaged
+from Kotlin/JVM and Compose Desktop; it is not an Android APK or an emulator.
+
+Most of the implementation deliberately remains upstream Meshtastic code:
+
+- shared Kotlin Multiplatform UI, protocol, database, messaging, node,
+  configuration, telemetry and map code;
+- desktop/JVM transports for Bluetooth LE (Kable), TCP and USB serial;
+- a small macOS fork layer for the MeshMac name, bundle identity, private data
+  directory, update source, build workflow and eventual signing/notarisation.
+
+The proof of concept currently builds for Apple silicon and is still under
+development. See [the macOS fork guide](MACOS_FORK.md) for build instructions,
+architecture, current limitations and upstream-sync workflow.
+
+---
+
+## Upstream project information
+
+The remainder of this README is retained from the upstream project for its
+build, contribution and licensing information.
 
 ![GitHub all releases](https://img.shields.io/github/downloads/meshtastic/meshtastic-android/total)
 [![Android CI](https://github.com/meshtastic/Meshtastic-Android/actions/workflows/pull-request.yml/badge.svg?branch=main)](https://github.com/meshtastic/Meshtastic-Android/actions/workflows/pull-request.yml)
