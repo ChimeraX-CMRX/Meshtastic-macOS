@@ -3,7 +3,7 @@ name: macOS proof of concept
 on:
   pull_request:
   push:
-    branches: [main, macos-poc]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
