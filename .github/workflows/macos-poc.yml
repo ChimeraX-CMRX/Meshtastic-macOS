@@ -1,0 +1,40 @@
+name: macOS proof of concept
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Gradle setup
+        uses: ./.github/actions/gradle-setup
+        with:
+          cache_read_only: 'false'
+          install_jetbrains_jdk: 'true'
+
+      - name: Test desktop host
+        run: ./gradlew :desktopApp:test
+
+      - name: Build unsigned DMG
+        run: ./gradlew :desktopApp:packageDistributionForCurrentOS --no-daemon
+
+      - name: Upload DMG
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: meshmac-unsigned-dmg
+          path: desktopApp/build/compose/binaries/main/dmg/*.dmg
+          retention-days: 14
+          if-no-files-found: error

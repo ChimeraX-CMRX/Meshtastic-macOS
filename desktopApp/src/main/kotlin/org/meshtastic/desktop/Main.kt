@@ -121,7 +121,7 @@ import java.util.Locale
 import kotlin.system.exitProcess
 import coil3.util.Logger as CoilLogger
 
-/** Meshtastic Desktop — the first non-Android target for the shared KMP module graph. */
+/** MeshMac — an independent macOS client built from the shared Meshtastic KMP module graph. */
 private const val MEMORY_CACHE_MAX_BYTES = 64L * 1024L * 1024L // 64 MiB
 private const val DISK_CACHE_MAX_BYTES = 32L * 1024L * 1024L // 32 MiB
 
@@ -155,7 +155,7 @@ fun main(args: Array<String>) {
         val koinApp = remember {
             // Keep console output and also capture into the in-memory buffer the Debug screen views/exports.
             Logger.setLogWriters(listOf(platformLogWriter(), InMemoryLogBuffer))
-            Logger.i { "Meshtastic Desktop — Starting" }
+            Logger.i { "MeshMac — Starting" }
             startKoin { modules(desktopPlatformModule(), desktopModule()) }
         }
         val systemLocale = remember { Locale.getDefault() }
@@ -171,7 +171,7 @@ fun main(args: Array<String>) {
     // release native handles — currently libnotify's process-wide state in LinuxNotificationSender. Guarded because
     // a teardown failure must not turn a clean quit into a non-zero exit.
     runCatching { stopKoin() }.onFailure { Logger.w(it) { "stopKoin() failed during shutdown" } }
-    Logger.i { "Meshtastic Desktop — Stopped" }
+    Logger.i { "MeshMac — Stopped" }
 
     // Restores the exit application() no longer performs. Not optional: lingering non-daemon threads (coroutine
     // dispatchers, ktor pools, AWT stragglers) would otherwise keep the JVM alive after the last window closes,
@@ -400,7 +400,7 @@ private fun ApplicationScope.MeshtasticWindow(
 
     Window(
         onCloseRequest = onCloseRequest,
-        title = "Meshtastic Desktop",
+        title = "MeshMac",
         icon = appIcon,
         state = windowState,
         visible = visible,
