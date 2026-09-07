@@ -7,77 +7,8 @@ See [GitHub Releases](https://github.com/meshtastic/Meshtastic-Android/releases)
 <!-- UNRELEASED_START -->
 ## [Unreleased]
 
-### Unreleased (not yet in any build)
-
-#### 🏗️ Features
-* feat(network): configure HTTP client engines and add platform User-Agent headers by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/7008
-* feat(ui): blend noise floor into signal quality rating (design#15) by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/7009
-#### 🛠️ Fixes
-* fix(network): point the API base URL at the R2-backed apiv2 host by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/7004
-* fix(settings): floor the beacon broadcast-target list at one row by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/7010
-* fix(settings): re-learn the node number when the first region set renumbers the radio by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/7021
-
-### Closed Beta (v2.8.2-closed.1)
-Changes since [`v2.8.1`](https://github.com/meshtastic/Meshtastic-Android/releases/tag/v2.8.1):
-
-#### 🏗️ Features
-* perf(ui): render QR codes at display density instead of fixed 960px by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6793
-* feat: report Android 17 memory-limiter kills via ApplicationExitInfo by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6792
-* feat(privacy): shield sensitive UI content from non-tool accessibility services by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6794
-* feat(hardware): fetch bootloader OTA quirks from the API, seeded from the bundled asset by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6802
-* feat(hardware): fetch the maintenance UF2 manifest from the API, digest-pinned by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6803
-* feat(messaging): swipe to reply, double-tap reactions, day separators by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6850
-* feat(messaging): per-contact drafts and a quieter composer by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6851
-* feat(messaging): name the sender on the jump-to-latest control by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6856
-* feat(notifications): offer conversations as bubbles by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6858
-* feat(messaging): mark unread, swipe row actions, and pinned conversations by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6857
-* feat(messaging): close the quick reaction bar on a tap outside it by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6865
-* feat(settings): send the optional ham long_name alongside the call sign by @vidplace7 in https://github.com/meshtastic/Meshtastic-Android/pull/6875
-* feat(appfunctions): reconcile system state instead of blind-writing it by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6908
-* feat(units): resolve units from the device region, add a Units setting, render through ICU by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6916
-* feat(connections): notice when transmit is disabled by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6945
-* feat(agents): add the run-meshtastic-android skill with desktop and emulator drivers by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6955
-* feat(map): give every map layer its own opacity slider by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6958
-* feat(map): filter the map by node role and by how a node was heard by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6959
-* feat(settings): align the Mesh Beacon config editor with design#140 by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6963
-* feat(discovery): suppress beacon invitations for channels the radio already has by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6964
-#### 🖥️ Desktop
-* fix(desktop): disable macOS notifications when the process has no app bundle by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6876
-* fix(desktop): test the bundle path, not the identifier, before notifying by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6885
-#### 🛠️ Fixes
-* fix(navigation): clear deep-link replay cache once applied to the backstack by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6796
-* fix(ui): give feedback when a contact or channel import arrives while disconnected by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6798
-* fix(database): rebuild the packet FTS index after the schema-52 table recreation by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6808
-* fix(map): raise android-maps-utils to 5.1.1 so KML import survives xmlutil 1.0.x by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6811
-* fix(database): give every SQLite connection a busy timeout by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6809
-* fix(firmware): show the erase wait and upload retries during Legacy DFU by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6812
-* fix(map): parse KMZ archives in the F-Droid map overlay renderer by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6834
-* fix(firmware): map SoftDevice variants for the new nrf52840 boards by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6843
-* fix(navigation): never let the active backstack empty under NavDisplay by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6844
-* fix(metrics): eliminate the Vico canvas restore underflow crash by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6847
-* fix(ui): bound pane content height under the adaptive three-pane scaffold by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6845
-* fix(connection): extend BLE handshake deadlines while config progress flows by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6848
-* fix(map): survive the WebView provider update race in Site Planner by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6846
-* fix(mqtt): tolerate object-typed payload in MQTT JSON messages by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6839
-* fix(messaging): clear and suppress notifications for the conversation on screen by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6849
-* fix(messaging): fire swipe row actions once per swipe, and let the snackbar go by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6863
-* Stabilize Mid-Session Locale Unit State Test by @jeremiah-k in https://github.com/meshtastic/Meshtastic-Android/pull/6870
-* Demote Repeated Offline Heartbeat Rejection Logs to Debug by @jeremiah-k in https://github.com/meshtastic/Meshtastic-Android/pull/6872
-* Use Scan-Only Probes After Prolonged Bonded BLE Reconnect Failures by @jeremiah-k in https://github.com/meshtastic/Meshtastic-Android/pull/6871
-* fix(permissions): recover from a skipped, denied, or revoked permission instead of dead-ending by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6880
-* fix(node): convert temperature before labelling it °F, and show wind in km/h by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6925
-* fix(settings): drop the beacon single-target scalars protobufs reserved by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6942
-* fix(node): scroll traceroute/log history detail popups by @beecho01 in https://github.com/meshtastic/Meshtastic-Android/pull/6708
-* fix(ui): show device roles by name, and stop doubling two percent signs by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6962
-* fix(map): gate the MapLibre waypoint editor on isModifiableBy by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6969
-* fix(ai): bound assistant messages at what the send path will actually encode by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6970
-* fix(firmware): hide USB maintenance where the platform cannot run it by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6974
-* fix(map): resolve the persisted basemap before the map first renders by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6978
-#### 📝 Other Changes
-* refactor(settings): edit the status message on the user screen by @jamesarich in https://github.com/meshtastic/Meshtastic-Android/pull/6951
-
 ## New Contributors
-* @azchohfi made their first contribution in https://github.com/meshtastic/Meshtastic-Android/pull/6864
+* @ChimeraX-CMRX made their first contribution in https://github.com/ChimeraX-CMRX/Meshtastic-macOS/pull/1
 <!-- UNRELEASED_END -->
 
 <!-- RELEASED_START -->
