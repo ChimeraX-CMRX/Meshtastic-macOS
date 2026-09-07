@@ -8,6 +8,15 @@
 > official Meshtastic Apple app and is not maintained or endorsed by the
 > Meshtastic project.
 
+## Download the macOS proof of concept
+
+**[Download MeshMac-2.8.2.dmg](https://github.com/ChimeraX-CMRX/Meshtastic-macOS/releases/download/v0.1.0-poc/MeshMac-2.8.2.dmg)**
+
+This Apple silicon build is an early, unsigned and unnotarised pre-release.
+macOS Gatekeeper will warn or may prevent normal launching. See the
+[v0.1.0-poc release notes](https://github.com/ChimeraX-CMRX/Meshtastic-macOS/releases/tag/v0.1.0-poc)
+for testing status and the SHA-256 checksum.
+
 This fork turns the existing Compose Multiplatform/Desktop application in
 [`meshtastic/Meshtastic-Android`](https://github.com/meshtastic/Meshtastic-Android)
 into an independently named macOS app. It is a native macOS `.app` packaged
